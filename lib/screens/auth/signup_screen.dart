@@ -117,7 +117,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 ButtonWidget(
                   label: 'Register',
                   onPressed: () {
-                    // register(context);
+                    register(context);
                   },
                 ),
                 const SizedBox(height: 10),
