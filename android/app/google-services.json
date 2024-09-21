@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "159240771069",
+    "project_id": "petskin-af728",
+    "storage_bucket": "petskin-af728.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:159240771069:android:0d91d4a418cbd795df7594",
+        "android_client_info": {
+          "package_name": "com.example.dog_classification_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMPVHlydeJQkj5WWXL5AhqAyyrbhRTyU4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

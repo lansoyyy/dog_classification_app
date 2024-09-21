@@ -1,8 +1,15 @@
+import 'package:dog_classification_app/firebase_options.dart';
 import 'package:dog_classification_app/screens/auth/login_screen.dart';
 import 'package:dog_classification_app/screens/home_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    name: 'petskin-af728"',
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
