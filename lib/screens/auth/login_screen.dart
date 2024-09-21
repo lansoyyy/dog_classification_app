@@ -5,6 +5,8 @@ import 'package:dog_classification_app/utils/const.dart';
 import 'package:dog_classification_app/widgets/button_widget.dart';
 import 'package:dog_classification_app/widgets/text_widget.dart';
 import 'package:dog_classification_app/widgets/textfield_widget.dart';
+import 'package:dog_classification_app/widgets/toast_widget.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -106,9 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ButtonWidget(
                   label: 'Login',
                   onPressed: () {
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context) => const HomeScreen()));
-                    // login(context);
+                    login(context);
                   },
                 ),
                 const SizedBox(height: 10),
@@ -245,28 +245,28 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  // login(context) async {
-  //   try {
-  //     await FirebaseAuth.instance.signInWithEmailAndPassword(
-  //         email: email.text, password: password.text);
+  login(context) async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: email.text, password: password.text);
 
-  //     Navigator.of(context).pushReplacement(
-  //       MaterialPageRoute(builder: (context) => const HomeScreen()),
-  //     );
-  //   } on FirebaseAuthException catch (e) {
-  //     if (e.code == 'user-not-found') {
-  //       showToast("No user found with that email.");
-  //     } else if (e.code == 'wrong-password') {
-  //       showToast("Wrong password provided for that user.");
-  //     } else if (e.code == 'invalid-email') {
-  //       showToast("Invalid email provided.");
-  //     } else if (e.code == 'user-disabled') {
-  //       showToast("User account has been disabled.");
-  //     } else {
-  //       showToast("An error occurred: ${e.message}");
-  //     }
-  //   } on Exception catch (e) {
-  //     showToast("An error occurred: $e");
-  //   }
-  // }
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => const HomeScreen()),
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        showToast("No user found with that email.");
+      } else if (e.code == 'wrong-password') {
+        showToast("Wrong password provided for that user.");
+      } else if (e.code == 'invalid-email') {
+        showToast("Invalid email provided.");
+      } else if (e.code == 'user-disabled') {
+        showToast("User account has been disabled.");
+      } else {
+        showToast("An error occurred: ${e.message}");
+      }
+    } on Exception catch (e) {
+      showToast("An error occurred: $e");
+    }
+  }
 }
