@@ -4,6 +4,7 @@ import 'package:dog_classification_app/screens/result_screen.dart';
 import 'package:dog_classification_app/widgets/button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:tflite_v2/tflite_v2.dart';
 
 import '../utils/colors.dart';
 import '../widgets/text_widget.dart';
@@ -16,6 +17,87 @@ class DetailsScreen extends StatefulWidget {
 }
 
 class _DetailsScreenState extends State<DetailsScreen> {
+  late String output = '';
+
+  late File pickedImage;
+
+  bool isImageLoaded = false;
+
+  late List result;
+
+  late String accuracy = '';
+
+  late String name = '';
+
+  late String numbers = '';
+
+  getImageCamera(String imgsrc) async {
+    setState(() {
+      hasLoaded = false;
+    });
+    var tempStore = await ImagePicker().pickImage(
+      source: imgsrc == 'camera' ? ImageSource.camera : ImageSource.gallery,
+    );
+
+    setState(() {
+      pickedImage = File(tempStore!.path);
+      isImageLoaded = true;
+      applyModel(File(tempStore.path));
+      hasLoaded = true;
+    });
+  }
+
+  List works = [];
+
+  loadmodel() async {
+    try {
+      await Tflite.loadModel(
+        model: "assets/model/model_unquant.tflite",
+        labels: "assets/model/labels.txt",
+      );
+    } catch (e) {
+      print('error $e');
+    }
+
+    // works = jsonDecode(await rootBundle.loadString('assets/data/main.json'));
+
+    setState(() {
+      hasLoaded = true;
+    });
+  }
+
+  String str = '';
+
+  applyModel(File file) async {
+    var res = await Tflite.runModelOnImage(
+        path: file.path, // required
+        imageMean: 0.0, // defaults to 117.0
+        imageStd: 255.0, // defaults to 1.0
+        numResults: 2, // defaults to 5
+        threshold: 0.2, // defaults to 0.1
+        asynch: true);
+    setState(() {
+      result = res!;
+
+      str = result[0]['label'].toString().split(' ')[0];
+    });
+
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => ResultScreen(
+              index: int.parse(str),
+              file: pickedImage,
+            )));
+  }
+
+  bool hasLoaded = false;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    loadmodel();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,7 +157,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 height: 75,
                 label: 'Capture',
                 onPressed: () {
-                  _pickImage(ImageSource.camera);
+                  getImageCamera('camera');
                 },
               ),
               const SizedBox(
@@ -86,7 +168,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 height: 75,
                 label: 'Gallery',
                 onPressed: () {
-                  _pickImage(ImageSource.gallery);
+                  getImageCamera('galllery');
                 },
               ),
               const SizedBox(
@@ -97,23 +179,5 @@ class _DetailsScreenState extends State<DetailsScreen> {
         ),
       ),
     );
-  }
-
-  File? _image;
-  // To store the picked image
-  final ImagePicker _picker = ImagePicker();
-  // Instance of ImagePicker
-  Future<void> _pickImage(ImageSource source) async {
-    final pickedFile = await _picker.pickImage(source: source);
-    if (pickedFile != null) {
-      setState(() {
-        _image = File(pickedFile.path);
-      });
-
-      Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => ResultScreen(
-                file: _image!,
-              )));
-    }
   }
 }
