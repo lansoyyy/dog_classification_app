@@ -1,6 +1,7 @@
 import 'package:dog_classification_app/screens/auth/login_screen.dart';
 import 'package:dog_classification_app/screens/breed_screen.dart';
 import 'package:dog_classification_app/screens/details_screen.dart';
+import 'package:dog_classification_app/screens/profile_screen.dart';
 import 'package:dog_classification_app/widgets/button_widget.dart';
 import 'package:dog_classification_app/widgets/logout_widget.dart';
 import 'package:dog_classification_app/widgets/text_widget.dart';
@@ -60,6 +61,18 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => const DetailsScreen()));
+              },
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            ButtonWidget(
+              radius: 20,
+              height: 75,
+              label: 'Profile',
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const ProfileScreen()));
               },
             ),
             const SizedBox(
