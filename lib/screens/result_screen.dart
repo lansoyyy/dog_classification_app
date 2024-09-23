@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dog_classification_app/screens/home_screen.dart';
 import 'package:dog_classification_app/widgets/button_widget.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +8,12 @@ import '../../utils/colors.dart';
 import '../../widgets/text_widget.dart';
 
 class ResultScreen extends StatefulWidget {
-  const ResultScreen({super.key});
+  File file;
+
+  ResultScreen({
+    super.key,
+    required this.file,
+  });
 
   @override
   State<ResultScreen> createState() => _ResultScreenState();
@@ -20,7 +27,7 @@ class _ResultScreenState extends State<ResultScreen> {
         foregroundColor: Colors.white,
         backgroundColor: primary,
         title: TextWidget(
-          text: 'Golden Retriever',
+          text: 'Aspin',
           fontSize: 18,
           color: Colors.white,
         ),
@@ -29,25 +36,19 @@ class _ResultScreenState extends State<ResultScreen> {
       body: Center(
         child: Column(
           children: [
-            const SizedBox(
-              height: 20,
-            ),
             Container(
-              width: 250,
+              width: double.infinity,
               height: 250,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage(
-                      'assets/images/bg.jpg',
-                    ),
-                    fit: BoxFit.cover),
+                    image: FileImage(widget.file), fit: BoxFit.cover),
               ),
             ),
             const SizedBox(
               height: 20,
             ),
             TextWidget(
-              text: 'Disease: Golden Retriever',
+              text: 'Result: Golden Retriever',
               fontSize: 18,
               color: Colors.black,
               fontFamily: 'Bold',

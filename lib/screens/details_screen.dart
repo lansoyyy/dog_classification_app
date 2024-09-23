@@ -23,75 +23,77 @@ class _DetailsScreenState extends State<DetailsScreen> {
         foregroundColor: Colors.white,
         backgroundColor: primary,
         title: TextWidget(
-          text: 'Golden Retriever',
+          text: 'Aspin',
           fontSize: 18,
           color: Colors.white,
         ),
         centerTitle: true,
       ),
       body: Center(
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 20,
-            ),
-            Container(
-              width: 250,
-              height: 250,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage(
-                      'assets/images/bg.jpg',
-                    ),
-                    fit: BoxFit.cover),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                width: double.infinity,
+                height: 250,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage(
+                        'assets/images/aspin.jfif',
+                      ),
+                      fit: BoxFit.cover),
+                ),
               ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            TextWidget(
-              text: 'Breed: Golden Retriever',
-              fontSize: 18,
-              color: Colors.black,
-              fontFamily: 'Bold',
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20),
-              child: TextWidget(
-                maxLines: 5,
-                text:
-                    'Proident cillum mollit proident eiusmod minim ad duis eiusmod nisi pariatur Lorem qui. Laborum minim proident et ad. Cupidatat anim velit eiusmod aute ea non adipisicing sunt consequat ut. Irure ex consequat veniam do elit pariatur fugiat.',
-                fontSize: 14,
-                color: Colors.grey,
-                fontFamily: 'Medium',
+              const SizedBox(
+                height: 20,
               ),
-            ),
-            const SizedBox(
-              height: 50,
-            ),
-            ButtonWidget(
-              radius: 20,
-              height: 75,
-              label: 'Capture',
-              onPressed: () {
-                _pickImage(ImageSource.camera);
-              },
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            ButtonWidget(
-              radius: 20,
-              height: 75,
-              label: 'Gallery',
-              onPressed: () {
-                _pickImage(ImageSource.gallery);
-              },
-            ),
-          ],
+              TextWidget(
+                text: 'Breed: Aspin',
+                fontSize: 18,
+                color: Colors.black,
+                fontFamily: 'Bold',
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: TextWidget(
+                  maxLines: 10,
+                  text:
+                      'The Aspin, short for Asong Pinoy (Filipino Dog), is a native dog breed from the Philippines known for its mixed ancestry and versatility. Aspins are not a standardized breed with specific physical traits, but they are generally medium-sized, with short to medium coats that can come in a variety of colors, including brown, black, white, and brindle. They have a hardy and muscular build, well-suited for the tropical climate and outdoor living.',
+                  fontSize: 14,
+                  color: Colors.grey,
+                  fontFamily: 'Medium',
+                ),
+              ),
+              const SizedBox(
+                height: 50,
+              ),
+              ButtonWidget(
+                radius: 20,
+                height: 75,
+                label: 'Capture',
+                onPressed: () {
+                  _pickImage(ImageSource.camera);
+                },
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              ButtonWidget(
+                radius: 20,
+                height: 75,
+                label: 'Gallery',
+                onPressed: () {
+                  _pickImage(ImageSource.gallery);
+                },
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -108,8 +110,10 @@ class _DetailsScreenState extends State<DetailsScreen> {
         _image = File(pickedFile.path);
       });
 
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => const ResultScreen()));
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => ResultScreen(
+                file: _image!,
+              )));
     }
   }
 }
