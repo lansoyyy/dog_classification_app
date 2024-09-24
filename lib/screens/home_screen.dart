@@ -102,12 +102,23 @@ class _HomeScreenState extends State<HomeScreen> {
             fontSize: 18,
             fontFamily: 'Bold',
           ),
-          content: TextWidget(
-            align: TextAlign.start,
-            maxLines: 15,
-            text:
-                'Laboris tempor commodo tempor nulla veniam labore irure adipisicing. Eu eu commodo fugiat non qui. Non proident sit ad adipisicing cillum cillum consequat elit laboris aute veniam sint consequat.',
-            fontSize: 14,
+          content: SingleChildScrollView(
+            child: Column(
+              children: [
+                TextWidget(
+                  align: TextAlign.start,
+                  maxLines: 50,
+                  text: '''
+          Welcome to PetSkin! To get started, you can either take a photo of your dog's skin condition using your device's camera or upload an existing image from your gallery. Make sure that the photo is clear and focuses on the affected area to ensure an accurate diagnosis. Once the image is uploaded, PetSkin will analyze it and identify the potential skin disease affecting your pet. The result will provide the name of the condition, a brief description, and care suggestions. If you’re not satisfied with the result, you can upload a new image for further analysis.
+          
+          In addition to the diagnosis feature, PetSkin offers sign-up and login functionalities for enhanced features. By creating an account, you can save your pet’s diagnoses, track the progress of skin conditions over time, and receive notifications about new treatments or tips. To sign up, simply click the Sign Up button and fill in the necessary information, such as your email and password. Don’t forget to verify your email to complete the registration. If you already have an account, use the Login screen to enter your email and password. In case you forget your password, you can reset it by clicking on Forgot Password.
+          
+          For the best results, we recommend taking the photo in good lighting, ensuring the skin area is clearly visible and not obstructed by fur. Avoid using blurry or unclear images to guarantee the most accurate diagnosis possible.
+          ''',
+                  fontSize: 14,
+                ),
+              ],
+            ),
           ),
           actions: [
             TextButton(
