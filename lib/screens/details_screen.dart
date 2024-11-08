@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dog_classification_app/screens/result_screen.dart';
 import 'package:dog_classification_app/widgets/button_widget.dart';
+import 'package:dog_classification_app/widgets/toast_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tflite_v2/tflite_v2.dart';
@@ -82,11 +83,15 @@ class _DetailsScreenState extends State<DetailsScreen> {
       str = result[0]['label'].toString().split(' ')[0];
     });
 
-    Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => ResultScreen(
-              index: int.parse(str),
-              file: pickedImage,
-            )));
+    if (result[0]['confidence'] > 0.85) {
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => ResultScreen(
+                index: int.parse(str),
+                file: pickedImage,
+              )));
+    } else {
+      showToast('Cannot proceed. Invalid image!');
+    }
   }
 
   bool hasLoaded = false;
@@ -103,7 +108,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
     return Scaffold(
       appBar: AppBar(
         foregroundColor: Colors.white,
-        backgroundColor: primary,
+        backgroundColor: Colors.green,
         title: TextWidget(
           text: 'Aspin',
           fontSize: 18,
