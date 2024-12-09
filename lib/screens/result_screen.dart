@@ -64,7 +64,20 @@ class _ResultScreenState extends State<ResultScreen> {
                 padding: const EdgeInsets.only(left: 20, right: 20),
                 child: TextWidget(
                   maxLines: 20,
-                  text: 'Advice: ${diseaseData[widget.index]['advice']}',
+                  text: 'Treatment: ${diseaseData[widget.index]['treatment']}',
+                  fontSize: 14,
+                  color: Colors.grey,
+                  fontFamily: 'Medium',
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: TextWidget(
+                  maxLines: 20,
+                  text: 'Days: ${diseaseData[widget.index]['daysOfTreatment']}',
                   fontSize: 14,
                   color: Colors.grey,
                   fontFamily: 'Medium',
