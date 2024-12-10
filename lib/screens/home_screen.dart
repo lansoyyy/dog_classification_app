@@ -1,6 +1,7 @@
 import 'package:dog_classification_app/screens/auth/login_screen.dart';
 import 'package:dog_classification_app/screens/breed_screen.dart';
 import 'package:dog_classification_app/screens/details_screen.dart';
+import 'package:dog_classification_app/screens/history_screen.dart';
 import 'package:dog_classification_app/screens/profile_screen.dart';
 import 'package:dog_classification_app/widgets/button_widget.dart';
 import 'package:dog_classification_app/widgets/logout_widget.dart';
@@ -41,52 +42,66 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       body: Center(
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 20,
-            ),
-            // Logo Placeholder
-            Image.asset(
-              logo,
-              height: 200,
-            ),
-            const SizedBox(
-              height: 50,
-            ),
-            ButtonWidget(
-              radius: 20,
-              height: 75,
-              label: 'Aspin',
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const DetailsScreen()));
-              },
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            ButtonWidget(
-              radius: 20,
-              height: 75,
-              label: 'Profile',
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const ProfileScreen()));
-              },
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            ButtonWidget(
-              radius: 20,
-              height: 75,
-              label: 'Help',
-              onPressed: () {
-                showHelp();
-              },
-            ),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 20,
+              ),
+              // Logo Placeholder
+              Image.asset(
+                logo,
+                height: 200,
+              ),
+              const SizedBox(
+                height: 50,
+              ),
+              ButtonWidget(
+                radius: 20,
+                height: 75,
+                label: 'Aspin',
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const DetailsScreen()));
+                },
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              ButtonWidget(
+                radius: 20,
+                height: 75,
+                label: 'Profile',
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const ProfileScreen()));
+                },
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              ButtonWidget(
+                radius: 20,
+                height: 75,
+                label: 'History',
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const HistoryScreen()));
+                },
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              ButtonWidget(
+                radius: 20,
+                height: 75,
+                label: 'Help',
+                onPressed: () {
+                  showHelp();
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
