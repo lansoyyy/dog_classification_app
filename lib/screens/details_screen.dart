@@ -1,6 +1,8 @@
 import 'dart:io';
 
+import 'package:dog_classification_app/data/disease_data.dart';
 import 'package:dog_classification_app/screens/result_screen.dart';
+import 'package:dog_classification_app/services/add_history.dart';
 import 'package:dog_classification_app/widgets/button_widget.dart';
 import 'package:dog_classification_app/widgets/toast_widget.dart';
 import 'package:flutter/material.dart';
@@ -84,6 +86,10 @@ class _DetailsScreenState extends State<DetailsScreen> {
     });
 
     if (result[0]['confidence'] > 0.85) {
+      addHistory(
+          diseaseData[int.parse(str)]['name'],
+          diseaseData[int.parse(str)]['treatment'],
+          diseaseData[int.parse(str)]['daysOfTreatment']);
       Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => ResultScreen(
                 index: int.parse(str),
