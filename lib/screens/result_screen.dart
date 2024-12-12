@@ -67,7 +67,7 @@ class _ResultScreenState extends State<ResultScreen> {
                   text: 'Treatment: ${diseaseData[widget.index]['treatment']}',
                   fontSize: 14,
                   color: Colors.grey,
-                  fontFamily: 'Medium',
+                  fontFamily: 'Bold',
                 ),
               ),
               const SizedBox(
@@ -80,8 +80,21 @@ class _ResultScreenState extends State<ResultScreen> {
                   text: 'Days: ${diseaseData[widget.index]['daysOfTreatment']}',
                   fontSize: 14,
                   color: Colors.grey,
+                  fontFamily: 'Bold',
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: TextWidget(
+                  maxLines: 2,
+                  text: 'Advice: ${diseaseData[widget.index]['advice']}',
+                  fontSize: 12,
+                  color: Colors.grey,
                   fontFamily: 'Medium',
                 ),
+              ),
+              const SizedBox(
+                height: 10,
               ),
               const SizedBox(
                 height: 50,

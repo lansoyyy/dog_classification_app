@@ -85,7 +85,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
       str = result[0]['label'].toString().split(' ')[0];
     });
 
-    if (result[0]['confidence'] > 0.85) {
+    if (result[0]['confidence'] > 0.90) {
       addHistory(
           diseaseData[int.parse(str)]['name'],
           diseaseData[int.parse(str)]['treatment'],
@@ -96,7 +96,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 file: pickedImage,
               )));
     } else {
-      showToast('Cannot proceed. Invalid image!');
+      showToast('This is not a dog!');
     }
   }
 
@@ -114,7 +114,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
     return Scaffold(
       appBar: AppBar(
         foregroundColor: Colors.white,
-        backgroundColor: Colors.green,
+        backgroundColor: primary,
         title: TextWidget(
           text: 'Aspin',
           fontSize: 18,

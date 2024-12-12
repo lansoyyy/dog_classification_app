@@ -11,7 +11,6 @@ Future addHistory(name, treatment, days) async {
     'days': days,
     'id': docUser.id,
     'dateTime': DateTime.now(),
-    'uid': userId,
   };
 
   await docUser.set(json);

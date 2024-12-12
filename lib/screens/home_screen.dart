@@ -29,17 +29,17 @@ class _HomeScreenState extends State<HomeScreen> {
           fontSize: 18,
           color: Colors.white,
         ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              logout(context, const LoginScreen());
-            },
-            icon: const Icon(
-              Icons.logout,
-              color: Colors.white,
-            ),
-          ),
-        ],
+        // actions: [
+        //   IconButton(
+        //     onPressed: () {
+        //       logout(context, const LoginScreen());
+        //     },
+        //     icon: const Icon(
+        //       Icons.logout,
+        //       color: Colors.white,
+        //     ),
+        //   ),
+        // ],
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -65,18 +65,18 @@ class _HomeScreenState extends State<HomeScreen> {
                       builder: (context) => const DetailsScreen()));
                 },
               ),
-              const SizedBox(
-                height: 30,
-              ),
-              ButtonWidget(
-                radius: 20,
-                height: 75,
-                label: 'Profile',
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const ProfileScreen()));
-                },
-              ),
+              // const SizedBox(
+              //   height: 30,
+              // ),
+              // ButtonWidget(
+              //   radius: 20,
+              //   height: 75,
+              //   label: 'Profile',
+              //   onPressed: () {
+              //     Navigator.of(context).push(MaterialPageRoute(
+              //         builder: (context) => const ProfileScreen()));
+              //   },
+              // ),
               const SizedBox(
                 height: 30,
               ),
